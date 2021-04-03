@@ -11,20 +11,19 @@ This project is designed to generate malleable c2 profiles based on the referenc
 
 ## Overview
 
-This project is meant to be quick and simple. It is basically a Jinja template with random variables. 
+This project is meant to quickly generate a randome c2 profile. It is basically a Jinja template with random variables. 
 
-Think of this a randomized version of the profiles found here https://github.com/threatexpress/malleable-c2/. 
+Think of this a randomized version of the reference profiles found here https://github.com/threatexpress/malleable-c2/. 
 
-There are other Random C2 profile generators that may work better for production like https://github.com/FortyNorthSecurity/C2concealer/
+There are other C2 profile generators that may work better for production like https://github.com/FortyNorthSecurity/C2concealer/
 
-### Highlight you should be aware before using
+### Highlights you should be aware of before using
 
-- The output profile attempts to provide references or guidance on the settings
 - Staging is disabled by default
 - This does take advantage of other good practices found in the reference profile, but adds randomization (This is why the project was created)
-- Does not setup profile variants (see Profile Variants - https://www.cobaltstrike.com/help-malleable-c2)
+- Does NOT use profile variants (see Profile Variants - https://www.cobaltstrike.com/help-malleable-c2)
 - URIs and DNS hosts do not try to be fancy, they are built using a random words from a word list.
-- Settings do not try attempt to be consistent across the profie. Each is just randomized.
+- Settings are consistent across the profie. Each is just randomized.
 
 ## Setup
 
@@ -34,6 +33,7 @@ This has been designed and tested with python3
 
 ```
 pip3 install -r requirements
+python random_c2profile.py
 ```
 
 ### Method 2: Keep your pythons separate and use pipenv
@@ -68,7 +68,7 @@ https://github.com/threatexpress/malleable-c2/
 !! of the reference profile.
 ===================================================================
 
-[*] Generating Profile ...
+[*] Generating Cobalt Strike 4.3 c2 profile ...
 [*] Done. Don't forget to validate with c2lint. 
 [*] Profile saved to output/GNAWZGHN.profile
 
