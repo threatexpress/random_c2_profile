@@ -1,12 +1,15 @@
 # Random C2 Profile Generator
 
 Cobalt Strike random C2 Profile generator
+
 Author: Joe Vest (@joevest)
 
 This project is designed to generate malleable c2 profiles based on the reference profile at https://github.com/threatexpress/malleable-c2/. 
 
 !! This not inteneded for production
+
 !! Generated profiles are designed to be used for testing variations 
+
 !! of the reference profile.
 
 ## Overview
