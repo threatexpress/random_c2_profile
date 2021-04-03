@@ -1,0 +1,299 @@
+################################################
+# Cobalt Strike Malleable C2 Profile
+# Version: CobaltStrike 4.3
+# Date   : {{ timestamp }}
+
+################################################
+## Profile Name
+################################################
+set sample_name "{{ sample_name }}";
+
+################################################
+## Sleep Times
+################################################
+set sleeptime "{{ sleeptime }}";         
+set jitter    "{{ jitter }}";           
+
+################################################
+##  Server Response Size jitter
+################################################
+set data_jitter "{{ data_jitter }}"; # Append random-length string (up to data_jitter value) to http-get and http-post server output.        
+
+################################################
+##  HTTP Client Header Removal
+################################################
+# set headers_remove "{{ headers_remove }}"; # Comma-separated list of HTTP client headers to remove from Beacon C2.
+
+################################################
+## Beacon User-Agent
+################################################
+set useragent "{{ useragent }}";
+
+################################################
+## SSL CERTIFICATE
+################################################
+https-certificate { # Simple self signed certificate data
+    
+    set C   "{{ https_certificate_C }}";
+    set CN  "{{ https_certificate_CN }}";
+    set O   "{{ https_certificate_O }}";
+    set OU  "{{ https_certificate_OU }}";
+    set validity "{{ https_certificate_V }}";
+}
+
+################################################
+## TCP Beacon
+################################################
+set tcp_port "{{ tcp_port }}"; # TCP beacion listen port
+set tcp_frame_header "{{ tcp_frame_header }}"; # Prepend header to TCP Beacon messages
+
+################################################
+## SMB beacons
+################################################
+set pipename         "{{ smb_pipename }}"; # Name of pipe for SSH sessions. Each # is replaced with a random hex value.
+set pipename_stager  "{{ smb_pipename_stager }}"; # Name of pipe to use for SMB Beacon's named pipe stager. Each # is replaced with a random hex value.
+set smb_frame_header "{{ smb_frame_header }}"; # Prepend header to SMB Beacon messages
+
+################################################
+## DNS beacons
+################################################
+dns-beacon {
+    # Options moved into "dns-beacon" group in version 4.3
+    set dns_idle           "{{ dns_beacon_dns_idle }}"; # IP address used to indicate no tasks are available to DNS Beacon; Mask for other DNS C2 values
+    set dns_max_txt        "{{ dns_beacon_dns_max_txt }}"; # Maximum length of DNS TXT responses for tasks
+    set dns_sleep          "{{ dns_beacon_dns_sleep }}"; # Force a sleep prior to each individual DNS request. (in milliseconds) 
+    set dns_ttl            "{{ dns_beacon_dns_ttl }}"; # TTL for DNS replies
+    set maxdns             "{{ dns_beacon_maxdns }}"; # Maximum length of hostname when uploading data over DNS (0-255)
+    set dns_stager_prepend ".{{ dns_beacon_dns_stager_prepend }}"; # Maximum length of hostname when uploading data over DNS (0-255)
+    set dns_stager_subhost ".{{ dns_beacon_dns_stager_subhost}}"; # Subdomain used by DNS TXT record stager.
+    set beacon             "{{ dns_beacon_beacon }}"; # 8 Char max recommended. DNS subhost prefix
+    set get_A              "{{ dns_beacon_get_A }}"; # 8 Char max recommended. DNS subhost prefix
+    set get_AAAA           "{{ dns_beacon_get_AAAA }}"; # 8 Char max recommended. DNS subhost prefix
+    set get_TXT            "{{ dns_beacon_get_TXT }}"; # 8 Char max recommended. DNS subhost prefix
+    set put_metadata       "{{ dns_beacon_put_metadata }}"; # 8 Char max recommended. DNS subhost prefix
+    set put_output         "{{ dns_beacon_put_output }}"; # 8 Char max recommended. DNS subhost prefix
+    set ns_response        "{{ dns_beacon_ns_response }}"; # How to process NS Record requests. "drop" does not respond to the request (default), "idle" responds with A record for IP address from "dns_idle", "zero" responds with A record for 0.0.0.0
+
+}
+
+################################################
+## SSH beacons
+################################################
+set ssh_banner        "{{ ssh_banner }}"; # SSH client banner
+set ssh_pipename      "{{ ssh_pipename }}"; # Name of pipe for SSH sessions. Each # is replaced with a random hex value.
+
+
+################################################
+## Staging process
+################################################
+set host_stage "{{ host_stage }}"; 
+
+http-stager { # Reference: https://www.cobaltstrike.com/help-malleable-c2
+    set uri_x86 "{{ http_stager_uri_x86 }}"; # URI for x86 staging
+    set uri_x64 "{{ http_stager_uri_x64 }}"; # URI for x64 staging
+
+    server {
+        header "Server" "{{ http_stager_server_header1 }}";
+        header {{ http_stager_server_header2 }};
+        header {{ http_stager_server_header3 }};
+        header {{ http_stager_server_header4 }};
+        header {{ http_stager_server_header5 }};
+        output {
+            prepend "{{ http_stager_server_prepend }}";
+            append "{{ http_stager_server_append }}";
+            print;
+            
+        }
+    }
+
+    client {
+        header {{ http_stager_client_header1 }};
+        header {{ http_stager_client_header2 }};
+        header {{ http_stager_client_header3 }};
+    }
+}
+
+################################################
+## Post Exploitation
+################################################
+post-ex { # Reference: https://www.cobaltstrike.com/help-malleable-postex
+    set spawnto_x86 "{{ post_ex_spawnto_x86 }}";
+    set spawnto_x64 "{{ post_ex_spawnto_x64 }}";
+    set obfuscate "{{ post_ex_obfuscate }}";
+    set smartinject "{{ post_ex_smartinject }}";
+    set amsi_disable "{{ post_ex_amsi_disable }}";
+    set pipename "{{ post_ex_pipename }}";
+    set keylogger "{{ post_ex_keylogger }}"; # options are GetAsyncKeyState or SetWindowsHookEx
+    #set thread_hint ""; # specify as module!function+0x##
+}
+
+
+################################################
+## Memory Indicators
+################################################
+stage { # https://www.cobaltstrike.com/help-malleable-postex
+    # allocator and RWX settings (Note: HealAlloc uses RXW)
+    {{ allocator_settings }} 
+    set magic_mz_x86   "{{ stage_magic_mz_x86 }}";
+    set magic_mz_x64   "{{ stage_magic_mz_x64 }}";
+    set magic_pe       "{{ stage_magic_pe }}";
+    set stomppe        "{{ stage_stomppe }}";
+    set obfuscate      "{{ stage_obfuscate }}";
+    set cleanup        "{{ stage_cleanup }}";
+    set sleep_mask     "{{ stage_sleep_mask}}";
+    set smartinject    "{{ stage_smartinject }}";
+    set checksum       "{{ stage_checksum }}";
+    set compile_time   "{{ stage_compile_time }}";
+    set entry_point    "{{ stage_entry_point }}";
+    set image_size_x86 "{{ stage_image_size_x86 }}";
+    set image_size_x64 "{{ stage_image_size_x64 }}";
+    set name           "{{ stage_name }}";
+    set rich_header    "{{ stage_rich_header }}";
+
+    ## WARNING: Module stomping 
+    # set module_x86 "{{ stage_module_x86 }}"; # Ask the x86 ReflectiveLoader to load the specified library and overwrite its space instead of allocating memory with VirtualAlloc.
+    # set module_x64 "{{ stage_module_x64 }}"; # Same as module_x86; affects x64 loader
+
+    # The transform-x86 and transform-x64 blocks pad and transform Beacon's Reflective DLL stage. These blocks support three commands: prepend, append, and strrep.
+    transform-x86 { # blocks pad and transform Beacon's Reflective DLL stage. These blocks support three commands: prepend, append, and strrep.
+        prepend "{{ stage_transform_x86_prepend }}"; # prepend nops
+        strrep "ReflectiveLoader" "{{ stage_transform_x86_strrep1 }}";
+        strrep "This program cannot be run in DOS mode" ""; # Remove this text
+        strrep "beacon.dll" ""; # Remove this text
+    }
+    transform-x64 { #blocks pad and transform Beacon's Reflective DLL stage. These blocks support three commands: prepend, append, and strrep.
+        prepend "{{ stage_transform_x64_prepend }}"; # prepend nops
+        strrep "ReflectiveLoader" "{{ stage_transform_x64_strrep1 }}";
+        strrep "beacon.x64.dll" ""; # Remove this text in the Beacon DLL
+    }
+
+    stringw "{{ sample_name }}"; # Add profile name to tag payloads to this profile
+}
+
+################################################
+## Process Injection
+################################################
+process-inject { # Reference: https://www.cobaltstrike.com/help-malleable-postex
+
+    set allocator "{{ process_inject_allocator }}"; # Options: VirtualAllocEx, NtMapViewOfSection 
+    set min_alloc "{{ process_inject_min_alloc }}"; # 	Minimum amount of memory to request for injected content
+    set startrwx "false"; # Use RWX as initial permissions for injected content. Alternative is RW.
+    set userwx   "false"; # Use RWX as final permissions for injected content. Alternative is RX.
+
+    transform-x86 { 
+        # Make sure that prepended data is valid code for the injected content's architecture (x86, x64). The c2lint program does not have a check for this.
+        prepend "{{ process_inject_transform_x86_prepend }}";
+        append "{{ process_inject_transform_x86_append }}";
+    }
+
+    transform-x64 {
+        # Make sure that prepended data is valid code for the injected content's architecture (x86, x64). The c2lint program does not have a check for this.
+        prepend "{{ process_inject_transform_x64_prepend }}";
+        append "{{ process_inject_transform_x64_append }}";
+    }
+  
+    execute {
+        # The execute block controls the methods Beacon will use when it needs to inject code into a process. Beacon examines each option in the execute block, determines if the option is usable for the current context, tries the method when it is usable, and moves on to the next option if code execution did not happen. 
+        {{ process_inject_execute }}
+    }
+}
+
+################################################
+## HTTP Headers
+################################################
+http-config { # The http-config block has influence over all HTTP responses served by Cobalt Strike’s web server. 
+    set headers "{{ http_config_headers }}";
+    header "Server" "{{ http_config_header_server }}";
+    header "Keep-Alive" "timeout=10, max=100";
+    header "Connection" "Keep-Alive";
+    # Use this option if your teamserver is behind a redirector
+    set trust_x_forwarded_for "{{ http_config_trust_x_forwarded_for }}";
+    # Block Specific User Agents with a 404 (added in 4.3)
+    set block_useragents "{{ http_config_block_useragents }}";
+}
+
+################################################
+## HTTP GET
+################################################
+http-get { # Don't think of this in terms of HTTP POST, as a beacon transaction of pushing data to the server
+
+    set uri "{{ http_get_uri }}"; # URI used for GET requests
+    set verb "{{ http_get_verb }}"; 
+
+    client {
+
+        header {{ http_get_client_header1 }};
+        header {{ http_get_client_header2 }};
+        header {{ http_get_client_header3 }};
+
+        metadata {
+            mask; # Transform type
+            {{ http_get_client_metadata_transform }}; # Transform type
+            prepend "{{ http_get_client_metadata_prepend }}"; # Cookie value
+            header "Cookie";                                  # Cookie header
+        }
+    }
+
+    server {
+
+        header "Server" "{{ http_get_server_header1 }}";
+        header {{ http_get_server_header2 }};
+        header {{ http_get_server_header3 }};
+        header {{ http_get_server_header4 }};
+        header {{ http_get_server_header5 }};
+        output {
+            mask; # Transform type
+            {{ http_get_server_transform }}; # Transform type
+            prepend "{{ http_get_server_prepend }}";
+            append "{{ http_get_server_append }}";
+            print;
+        }
+
+    }
+}
+
+################################################
+## HTTP POST
+################################################
+http-post { # Don't think of this in terms of HTTP POST, as a beacon transaction of pushing data to the server
+
+    set uri "{{ http_post_uri }}"; # URI used for POST block. 
+    set verb "{{ http_post_verb }}"; # HTTP verb used in POST block. Can be GET or POST
+
+    client {
+
+        header {{ http_post_client_header1 }};
+        header {{ http_post_client_header2 }};
+        header {{ http_post_client_header3 }};
+       
+        id {
+            mask; # Transform type
+            {{ http_post_client_id_transform }}; # Transform type
+            parameter "{{ http_post_client_id_parameter }}";            
+        }
+              
+        output {
+            mask; # Transform type
+            {{ http_post_client_output_transform }}; # Transform type
+            print;
+        }
+    }
+
+    server {
+
+        header "Server" "{{ http_get_server_header1 }}";
+        header {{ http_post_server_header2 }};
+        header {{ http_post_server_header3 }};
+        header {{ http_post_server_header4 }};
+        header {{ http_post_server_header5 }};
+
+        output {
+            mask; # Transform type
+            {{ http_post_server_transform }}; # Transform type
+            prepend "{{ http_post_server_prepend }}";
+            append "{{ http_post_server_append }}";
+            print;
+
+        }
+    }
+}

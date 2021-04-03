@@ -1,0 +1,2 @@
+Jinja2==2.11.3
+Random-User-Agent==1.0.1
