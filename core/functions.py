@@ -313,12 +313,12 @@ def get_http_server_contenttype():
     return '"Content-Type" "' + random.choice(contenttypes) + '; charset=utf-8"'
 
 def get_post_ex_spawnto_x86():
-    targets = ['runonce.exe','svchost.exe -k netsvc','svchost.exe -k wksvc','dmclient.exe','locator.exe','systray.exe','WUAUCLT.exe','w32tm.exe','dllhost.exe -o enable']
+    targets = ['runonce.exe','svchost.exe -k netsvc','svchost.exe -k wksvc','dmcertinst.exe','locator.exe','systray.exe','WUAUCLT.exe','w32tm.exe','dllhost.exe -o enable']
     target = random.choice(targets)
     return '%windir%\\\\syswow64\\\\' + target
 
 def get_post_ex_spawnto_x64():
-    targets = ['runonce.exe','svchost.exe -k netsvc','svchost.exe -k wksvc','dmclient.exe','locator.exe','systray.exe','WUAUCLT.exe','w32tm.exe','dllhost.exe -o enable']
+    targets = ['runonce.exe','svchost.exe -k netsvc','svchost.exe -k wksvc','dmcertinst.exe','locator.exe','systray.exe','WUAUCLT.exe','w32tm.exe','dllhost.exe -o enable']
     target = random.choice(targets)
     return '%windir%\\\\sysnative\\\\' + target
 
