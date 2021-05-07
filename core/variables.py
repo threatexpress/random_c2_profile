@@ -47,7 +47,7 @@ variables = {
 "ssh_banner"                    : get_ssh_banner(),
 "ssh_pipename"                  : get_pipename(),
 # Staging
-"host_stage"                    : "false",
+"host_stage"                    : "true", # Staging on or off
 # Staging - Server Settings
 "http_stager_uri_x86"           : get_random_uri(),
 "http_stager_uri_x64"           : get_random_uri(),
@@ -109,7 +109,7 @@ variables = {
 "http_config_headers"                  : "Date, Server, Content-Length, Keep-Alive, Connection, Content-Type",
 "http_config_header_server"            : get_http_config_headers(),
 "http_config_trust_x_forwarded_for"    : "true",
-"http_config_block_useragents"         : "*virustotal*,curl*,lynx*,wget*,*Censys*,''",
+"http_config_block_useragents"         : "curl*,lynx*,wget*",
 # HTTP GET
 "http_get_uri"                         : get_random_uri(),
 "http_get_verb"                        : "GET",
