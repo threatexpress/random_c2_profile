@@ -77,13 +77,16 @@ https://github.com/threatexpress/malleable-c2/
 
 ```
 
-
 ## References
 
 - http://threatexpress.com/blogs/2018/a-deep-dive-into-cobalt-strike-malleable-c2/
 - https://bluescreenofjeff.com/2017-01-24-how-to-write-malleable-c2-profiles-for-cobalt-strike/
 - https://github.com/threatexpress/malleable-c2/
 - https://github.com/FortyNorthSecurity/C2concealer/
+
+Magic MZ
+
+- https://www.redteam.cafe/red-team/shellcode-injection/magic_mz_x86-and-magic_mz_x64
 
 # Word list source
 - https://raw.githubusercontent.com/chrislockard/api_wordlist/master/objects.txt

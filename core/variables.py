@@ -73,8 +73,8 @@ variables = {
 "post_ex_keylogger"             : "GetAsyncKeyState", # options are GetAsyncKeyState (default) or SetWindowsHookEx
 # Memory Indicators
 "allocator_settings"            : get_stage_allocator(), # Options: HeapAlloc, MapViewOfFile, or VirtualAlloc
-"stage_magic_mz_x86"            : "MZREMZRE", # Override the first bytes (MZ header included) of Beacon's Reflective DLL. Valid x86 instructions are required. Follow instructions that change CPU state with instructions that undo the change.
-"stage_magic_mz_x64"            : "MZARMZAR", # Override the first bytes (MZ header included) of Beacon's Reflective DLL. Valid x86 instructions are required. Follow instructions that change CPU state with instructions that undo the change.
+"stage_magic_mz_x86"            : get_stage_magic_mz_86(),
+"stage_magic_mz_x64"            : get_stage_magic_mz_64(), 
 "stage_magic_pe"                : get_stage_magic_pe(),
 #"stage_userwx"                  : "false",
 "stage_stomppe"                 : "true",

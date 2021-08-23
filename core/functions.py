@@ -343,6 +343,40 @@ def get_stage_magic_pe():
     # Override the PE character marker used by Beacon's Reflective Loader with another value.
     return get_random_string(2)
     
+def get_stage_magic_mz_86():
+# References:
+# https://www.redteam.cafe/red-team/shellcode-injection/magic_mz_x86-and-magic_mz_x64
+# https://www.cobaltstrike.com/help-malleable-postex
+# https://www.cs.uaf.edu/2015/fall/cs301/lecture/09_16_stack.html
+
+    codes = [
+    'H@KC', # ASM = dec eax, inc eax, dec ebx, inc ebx
+    'KCKC', # ASM = dec ebx, inc ebx, dec ebx, inc ebx
+    '@H@H', # ASM = inc eax, dec eax, inc eax, dec eax
+    ']U]U', # ASM = pop ebp, push ebp, pop ebp, push ebp 
+    'MEME'  # ASM = inc ebp, dec ebp, inc ebp, dec ebp 
+    ]
+
+    return random.choice(codes)
+
+
+def get_stage_magic_mz_64():
+# References:
+# https://www.redteam.cafe/red-team/shellcode-injection/magic_mz_x86-and-magic_mz_x64
+# https://www.cobaltstrike.com/help-malleable-postex
+# https://www.cs.uaf.edu/2015/fall/cs301/lecture/09_16_stack.html
+
+    codes = [
+    'AXAP', # ASM = pop r8, push r8
+    'AYAQ', # ASM = pop r9, push r9
+    'AZAR', # ASM = pop r10, push r10
+    '^V',   # ASM = pop rsi, push rsi
+    'A[AS' # ASM = pop r11, push r11
+    ]
+
+    return random.choice(codes)
+
+
 def get_stage_compile_time():
     month  = random.choice(['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'])
     day    = str(random.randint(1,30)).zfill(2)
