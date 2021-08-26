@@ -283,11 +283,12 @@ def get_dns_maxtxt():
 
 def get_dns_sleep():
     # Force a sleep prior to each individual DNS request. (in milliseconds)
-    return str(random.randint(240,254))
+    # Long sleeps can cause trouble with DNS
+    return str(random.randint(1,100))
 
 def get_dns_ttl():
     # TTL for DNS replies
-    return str(random.randint(1,20))
+    return str(random.randint(1,4=5))
 
 def get_dns_maxdns():
     # Maximum length of hostname when uploading data over DNS (0-255)
@@ -295,8 +296,9 @@ def get_dns_maxdns():
 
 def get_dns_host():
     # Random dns host using this format string.string.
+    # This must be lowercase
     length = random.randint(1,7)
-    return get_random_alphanum(length) + "."
+    return get_random_alphanum(length).lower() + "."
 
 def get_ssh_banner():
     # Return random SSH banner (not guaranteed to real)
