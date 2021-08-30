@@ -288,7 +288,7 @@ def get_dns_sleep():
 
 def get_dns_ttl():
     # TTL for DNS replies
-    return str(random.randint(1,4=5))
+    return str(random.randint(1,5))
 
 def get_dns_maxdns():
     # Maximum length of hostname when uploading data over DNS (0-255)
