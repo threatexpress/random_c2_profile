@@ -71,7 +71,7 @@ https://github.com/threatexpress/malleable-c2/
 !! of the reference profile.
 ===================================================================
 
-[*] Generating Cobalt Strike 4.3 c2 profile ...
+[*] Generating Cobalt Strike 4.4 c2 profile ...
 [*] Done. Don't forget to validate with c2lint. 
 [*] Profile saved to output/GNAWZGHN.profile
 

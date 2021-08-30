@@ -1,6 +1,6 @@
 ################################################
 # Cobalt Strike Malleable C2 Profile
-# Version: CobaltStrike 4.3
+# Version: Cobalt Strike 4.4
 # Date   : {{ timestamp }}
 
 ################################################
@@ -210,6 +210,8 @@ http-config { # The http-config block has influence over all HTTP responses serv
     set trust_x_forwarded_for "{{ http_config_trust_x_forwarded_for }}";
     # Block Specific User Agents with a 404 (added in 4.3)
     set block_useragents "{{ http_config_block_useragents }}";
+    # Allow Specific User Agents (added in 4.4);
+    # allow_useragents ""; (if specified, block_useragents will take precedence)
 }
 
 ################################################
