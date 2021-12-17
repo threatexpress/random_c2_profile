@@ -1,6 +1,6 @@
 ################################################
 # Cobalt Strike Malleable C2 Profile
-# Version: Cobalt Strike 4.4
+# Version: Cobalt Strike 4.5
 # Date   : {{ timestamp }}
 
 ################################################
@@ -138,7 +138,7 @@ stage { # https://www.cobaltstrike.com/help-malleable-postex
     set magic_mz_x64   "{{ stage_magic_mz_x64 }}";
     set magic_pe       "{{ stage_magic_pe }}";
     set stomppe        "{{ stage_stomppe }}";
-    set obfuscate      "{{ stage_obfuscate }}";
+    set obfuscate      "{{ stage_obfuscate }}"; # review sleepmask and UDRL considerations for obfuscate
     set cleanup        "{{ stage_cleanup }}";
     set sleep_mask     "{{ stage_sleep_mask}}";
     set smartinject    "{{ stage_smartinject }}";
@@ -178,6 +178,8 @@ process-inject { # Reference: https://www.cobaltstrike.com/help-malleable-postex
     set allocator "{{ process_inject_allocator }}"; # Options: VirtualAllocEx, NtMapViewOfSection 
     set min_alloc "{{ process_inject_min_alloc }}"; # 	Minimum amount of memory to request for injected content
     set startrwx "false"; # Use RWX as initial permissions for injected content. Alternative is RW.
+    
+    # review sleepmask and UDRL considerations for userwx
     set userwx   "false"; # Use RWX as final permissions for injected content. Alternative is RX.
 
     transform-x86 { 

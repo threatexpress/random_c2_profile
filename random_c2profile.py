@@ -16,7 +16,7 @@ https://github.com/threatexpress/malleable-c2/
 ===================================================================
 '''
 # Cobalt Strike profile version 
-version = "4.4"
+version = "4.5"
 
 print(banner)
 print("[*] Generating Cobalt Strike " + version + " c2 profile...")
