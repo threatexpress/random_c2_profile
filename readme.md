@@ -35,7 +35,9 @@ This has been designed and tested with python3
 ### Method 1: Quick and easy
 
 ```
-pip3 install -r requirements
+git clone https://github.com/threatexpress/random_c2_profile
+cd random_c2_profile
+pip3 install -r requirements.txt
 python random_c2profile.py
 ```
 
