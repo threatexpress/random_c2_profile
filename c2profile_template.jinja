@@ -42,6 +42,13 @@ https-certificate { # Simple self signed certificate data
 }
 
 ################################################
+## Task and Proxy Max Size
+################################################
+set tasks_max_size "{{ tasks_max_size }}";
+set tasks_proxy_max_size "{{ tasks_proxy_max_size }}";
+set tasks_dns_proxy_max_size "{{ tasks_dns_proxy_max_size }}";  
+
+################################################
 ## TCP Beacon
 ################################################
 set tcp_port "{{ tcp_port }}"; # TCP beacion listen port

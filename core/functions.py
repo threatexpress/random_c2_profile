@@ -89,7 +89,7 @@ def get_http_metadata_transform():
     return random.choice(transformations)
 
 def get_http_content():
-    # Return random blog of HTTP response content
+    # Return random blob of HTTP response content
     contents = [
     ##Start jquery v3.4.1##
     "/*! jQuery v3.4.1 | (c) JS Foundation and other contributors | jquery.org/license */\
