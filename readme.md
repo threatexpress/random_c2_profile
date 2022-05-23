@@ -27,7 +27,7 @@ This has been designed and tested with python3
 git clone https://github.com/threatexpress/random_c2_profile
 cd random_c2_profile
 pip3 install -r requirements.txt
-python random_c2profile.py
+python3 random_c2profile.py
 ```
 
 ### Method 2: Keep your pythons separate and use pipenv
