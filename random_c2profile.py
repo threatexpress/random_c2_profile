@@ -8,14 +8,15 @@ Cobalt Strike random C2 Profile generator
 Joe Vest (@joevest) - 2021
 ===================================================================
 '''
-# Cobalt Strike profile version 
-version = "4.6"
-
-print(banner)
-print("[*] Generating Cobalt Strike " + version + " c2 profile...")
 
 from jinja2 import Template
 from core.variables import *
+ 
+# Get Cobalt Strike version from variables.py
+version = variables['version']
+
+print(banner)
+print("[*] Generating Cobalt Strike " + version + " c2 profile...")
 
 sample_name = get_random_string(8)
 c2profile_template_file_contents = open("c2profile_template.jinja",'r').read()
