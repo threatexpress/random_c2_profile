@@ -5,6 +5,8 @@ Variables are mapped to the variable in c2profile_template.jinja template
 from core.functions import *
 
 variables = {
+# Cobalt Strike Version
+"version"                       : "4.6",
 # Created
 "timestamp"                     : get_date(),
 # Timing
