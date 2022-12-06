@@ -49,6 +49,14 @@ set tasks_proxy_max_size "{{ tasks_proxy_max_size }}";
 set tasks_dns_proxy_max_size "{{ tasks_dns_proxy_max_size }}";  
 
 ################################################
+## Access Token controls
+## Added in 4.7
+## Allows control over how access tokens are permissioned
+# https://hstechdocs.helpsystems.com/manuals/cobaltstrike/current/userguide/content/topics/post-exploitation_trust-relationships.htm
+set steal_token_access_mask "{{ steal_token_access_mask }}";
+################################################
+
+################################################
 ## TCP Beacon
 ################################################
 set tcp_port "{{ tcp_port }}"; # TCP beacion listen port
@@ -181,6 +189,12 @@ stage { # https://www.cobaltstrike.com/help-malleable-postex
 ## Process Injection
 ################################################
 process-inject { # Reference: https://www.cobaltstrike.com/help-malleable-postex
+
+    # 4.7 BOF settings
+    # set how memory is allocated in the current process for BOF content
+    # https://hstechdocs.helpsystems.com/manuals/cobaltstrike/current/userguide/content/topics/malleable-c2-extend_process-injection.htm?Highlight=bof_allocator
+    set bof_allocator "{{ process_inject_bof_allocator }}";
+    set bof_reuse_memory "{{ process_inject_bof_reuse_memory }}";
 
     set allocator "{{ process_inject_allocator }}"; # Options: VirtualAllocEx, NtMapViewOfSection 
     set min_alloc "{{ process_inject_min_alloc }}"; # 	Minimum amount of memory to request for injected content
