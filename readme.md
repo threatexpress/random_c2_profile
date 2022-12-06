@@ -10,6 +10,8 @@ This project is designed to generate malleable c2 profiles based on the referenc
 
 Note: Get change log from git using `git log --pretty=format:"  - %cd - %cn : %s"`
 
+- Tue Dec 6 13:20:54 2022 -0600 - GitHub : Merge pull request #10 from threatexpress/4.7
+- Tue Dec 6 13:17:17 2022 -0600 - vestjoe : Added 4.7 profile settings, Removed old HTML content template, Added new HTML content template to html_content.py
 - Wed Jun 22 11:58:22 2022 -0500 - GitHub : Merge pull request #6 from Maleick/main
 - Wed Jun 22 11:57:47 2022 -0500 - GitHub : Merge pull request #5 from ceramic-skate0/patch-1
 - Wed Jun 22 11:43:07 2022 -0500 - Maleick : Add Cobalt Strike version variable
