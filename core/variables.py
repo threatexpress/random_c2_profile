@@ -6,7 +6,7 @@ from core.functions import *
 
 variables = {
 # Cobalt Strike Version
-"version"                       : "4.6",
+"version"                       : "4.7",
 # Created
 "timestamp"                     : get_date(),
 # Timing
@@ -27,6 +27,8 @@ variables = {
 "tasks_max_size"                : "1048576",
 "tasks_proxy_max_size"          : "921600",
 "tasks_dns_proxy_max_size"      : "71680",  
+# steal_token_access_mask
+"steal_token_access_mask"       : "11", # recomendation from https://hstechdocs.helpsystems.com/manuals/cobaltstrike/current/userguide/content/topics/post-exploitation_trust-relationships.htm
 # TCP Beacon
 "tcp_port"                      : get_tcpport(),
 "tcp_frame_header"              : get_tcp_frame_header(),
@@ -106,6 +108,8 @@ variables = {
 "process_inject_min_alloc"      : get_process_inject_min_alloc(),
 "process_inject_startrwx"       : "false",
 "process_inject_userwx"         : "false",
+"process_inject_bof_reuse_memory"      : "true", # added in 4.7
+"process_inject_bof_allocator"         : get_process_inject_bof_allocator(), # added in 4.7     
 "process_inject_transform_x86_prepend" : get_nops(),
 "process_inject_transform_x86_append"  : get_nops(),
 "process_inject_transform_x64_prepend" : get_nops(),

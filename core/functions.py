@@ -1,6 +1,7 @@
 import datetime
 import random
 import string
+from core.html_content import *
 from random_user_agent.user_agent import UserAgent
 from random_user_agent.params import SoftwareName, OperatingSystem, HardwareType, SoftwareType, Popularity
 
@@ -90,55 +91,13 @@ def get_http_metadata_transform():
 
 def get_http_content():
     # Return random blob of HTTP response content
-    contents = [
-    ##Start jquery v3.4.1##
-    "/*! jQuery v3.4.1 | (c) JS Foundation and other contributors | jquery.org/license */\
-    !function(e,t){\'use strict\';\'object\'==typeof module&&\'object\'==typeof module.exports?\
-    module.exports=e.document?t(e,!0):function(e){if(!e.document)throw new Error(\'jQuery \
-    requires a window with a document\');return t(e)}:t(e)}(\'undefined\'!=typeof window?window\
-    :this,function(C,e){\'use strict\';var t=[],E=C.document,r=Object.getPrototypeOf,s=t.slice\
-    ,g=t.concat,u=t.push,i=t.indexOf,n={},o=n.toString,v=n.hasOwnProperty,a=v.toString,l=\
-    a.call(Object),y={},m=function(e){return\'function\'==typeof e&&\'number\'!=typeof e.nodeType}\
-    ,x=function(e){return null!=e&&e===e.window},c={type:!0,src:!0,nonce:!0,noModule:!0};fun\
-    ction b(e,t,n){var r,i,o=(n=n||E).createElement(\'script\');if(o.text=e,t)for(r in c)(i=t[\
-    r]||t.getAttribute&&t.getAttribute(r))&&o.setAttribute(r,i);n.head.appendChild(o).parentNode;"
-    ##End jquery v3.4.1##
-    ,
-    ##Start jquery ui v1.12.1##
-    "/*! jQuery UI - v1.12.1 - 2016-09-14\
-    * http://jqueryui.com\
-    * Includes: widget.js, position.js,\
-    data.js, disable-selection.js, effect.js, effects/effect-blind.js, effects/effect-bounce.js\
-    , effects/effect-clip.js, effects/effect-drop.js, effects/effect-explode.js, effects/effect\
-    -fade.js, effects/effect-fold.js, effects/effect-highlight.js, effects/effect-puff.js, effe\
-    cts/effect-pulsate.js, effects/effect-scale.js, effects/effect-shake.js, effects/effect-s\
-    ize.js, effects/effect-slide.js, effects/effect-transfer.js, focusable.js, form-reset-mix\
-    in.js, jquery-1-7.js, keycode.js, labels.js, scroll-parent.js, tabbable.js, unique-id.js,\
-    widgets/accordion.js, widgets/autocomplete.js, widgets/button.js, widgets/checkboxradio.\
-    js, widgets/controlgroup.js, widgets/datepicker.js, widgets/dialog.js, widgets/draggable\
-    .js, widgets/droppable.js, widgets/menu.js, widgets/mouse.js, widgets/progressbar.js, w\
-    idgets/resizable.js, widgets/selectable.js, widgets/selectmenu.js, widgets/slider.js, w\
-    idgets/sortable.js, widgets/spinner.js, widgets/tabs.js, widgets/tooltip.js\
-    * Copyright jQuery Foundation and other contributors; Licensed MIT */"
-    ##End jquery ui v1.12.1##
-    ,
-    ##Start jquery v2.2.4##
-    "/*! jQuery v2.2.4 | (c) jQuery Foundation | jquery.org/license */\
-    !function(a,b){\'object\'==typeof module&&\'object\'==typeof module.exp\
-    orts?module.exports=a.document?b(a,!0):function(a){if(!a.document)th\
-    row new Error(\'jQuery requires a window with a document\');return b(a\
-    )}:b(a)}(\'undefined\'!=typeof window?window:this,function(a,b){var c=\
-    [],d=a.document,e=c.slice,f=c.concat,g=c.push,h=c.indexOf,i={},j=i.t\
-    oString,k=i.hasOwnProperty,l={},m=\'2.2.4\',n=function(a,b){return new \
-    n.fn.init(a,b)},o=/^[suFEFFxA0]+|[suFEFFxA0]+$/g,p=/^-ms-/,q=/-\
-    ([da-z])/gi,r=function(a,b){return b.toUpperCase()};n.fn=n.prototype\
-    ={jquery:m,constructor:n,selector:\'\',length:0,toArray:function(){retu\
-    rn e.call(this)},get:function(a){return null!=a?0>a?this[a+this.lengt\
-    h]:this[a]:e.call(this)},pushStack:function(a){var b=n.merge(this.con\
-    structor(),a);return b.prevObject=this,b.context=this.context,b},each:"
-    ##End jquery v2.2.4##
-    ] 
-    return random.choice(contents)
+    # contents variable is stored in html_contents.py
+    
+    # Select items from random
+    # Ensure " is escaped in a format usable by the profile
+    escaped = random.choice(contents).replace("\\","\\\\").replace('"','\\"')
+    content = ''.join(char for char in escaped if ord(char) < 128)
+    return content
 
 def get_nops():
     # Return random bytearry of NOP equvilants as \x formatted string
@@ -441,6 +400,11 @@ def get_stage_rich_header():
 def get_process_inject_allocator():
     # The preferred method to allocate memory in the remote process. Specify VirtualAllocEx or NtMapViewOfSection. The NtMapViewOfSection option is for same-architecture injection only. VirtualAllocEx is always used for cross-arch memory allocations.
     options = ['VirtualAllocEx', 'NtMapViewOfSection']
+    return random.choice(options)
+
+def get_process_inject_bof_allocator():
+    # The preferred method to allocate memory in the current process to execute a BOF. Specify VirtualAlloc, MapViewOfFile, or HeapAlloc. 
+    options = ['VirtualAlloc', 'MapViewOfFile','HeapAlloc']
     return random.choice(options)
 
 def get_process_inject_min_alloc():

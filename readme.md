@@ -6,6 +6,31 @@ Author: Joe Vest (@joevest)
 
 This project is designed to generate malleable c2 profiles based on the reference profile at https://github.com/threatexpress/malleable-c2/. 
 
+## Change Log
+
+Note: Get change log from git using `git log --pretty=format:"  - %cd - %cn : %s"`
+
+- Wed Jun 22 11:58:22 2022 -0500 - GitHub : Merge pull request #6 from Maleick/main
+- Wed Jun 22 11:57:47 2022 -0500 - GitHub : Merge pull request #5 from ceramic-skate0/patch-1
+- Wed Jun 22 11:43:07 2022 -0500 - Maleick : Add Cobalt Strike version variable
+- Mon May 23 13:03:28 2022 -0400 - GitHub : Update readme.md
+- Wed Apr 20 18:44:19 2022 -0500 - GitHub : Merge pull request #4 from threatexpress/cs4.6
+- Wed Apr 20 18:36:29 2022 -0500 - vestjoe : cs4.6 updates
+- Fri Dec 17 13:44:45 2021 -0600 - vestjoe : update for CS 4.5
+- Fri Dec 17 13:26:30 2021 -0600 - GitHub : Merge pull request #2 from Pernat1y/patch-1
+- Sat Sep 11 14:43:27 2021 +0300 - GitHub : Updated readme
+- Mon Aug 30 06:07:18 2021 -0500 - vestjoe : added 4.4 tweaks
+- Mon Aug 30 06:01:47 2021 -0500 - vestjoe : silly bug
+- Thu Aug 26 12:06:33 2021 -0500 - vestjoe : tweaks to DNS settings, host must be lowercase, adjusted dns_sleep options
+- Mon Aug 23 12:50:47 2021 -0500 - vestjoe : Updated for CS 4.4 and added magic mz options
+- Thu May 6 20:05:33 2021 -0500 - vestjoe : fix
+- Thu Apr 29 11:47:00 2021 -0500 - vestjoe : update spawnto to better match x64 and x86 across mutiple version of Windows
+- Wed Apr 28 13:55:57 2021 -0500 - vestjoe : better compatibility
+- Sat Apr 3 15:51:24 2021 -0500 - vestjoe : updated
+- Sat Apr 3 15:49:52 2021 -0500 - vestjoe : updated
+- Sat Apr 3 15:26:49 2021 -0500 - vestjoe : initial
+
+
 ## Overview
 
 This project is meant to quickly generate a random c2 profile. It is basically a Jinja template with random variables. The idea is to focus on randomization vs a cohesive set of values that support a specific threat actor.
@@ -55,7 +80,7 @@ Cobalt Strike random C2 Profile generator
 Joe Vest (@joevest) - 2021
 ===================================================================
 
-[*] Generating Cobalt Strike 4.6 c2 profile ...
+[*] Generating Cobalt Strike 4.7 c2 profile ...
 [*] Done. Don't forget to validate with c2lint. 
 [*] Profile saved to output/GNAWZGHN.profile
 
