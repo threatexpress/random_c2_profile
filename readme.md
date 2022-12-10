@@ -6,6 +6,14 @@ Author: Joe Vest (@joevest)
 
 This project is designed to generate malleable c2 profiles based on the reference profile at https://github.com/threatexpress/malleable-c2/. 
 
+!! OPSEC warning !!
+
+The output may not meet your OPSEC needs. Profiles should always be tweaked to meet your specific needs. This project is designed to quickly create profiles based on random data.
+
+Edit the template if you want more control over the project.
+
+
+
 ## Change Log
 
 Note: Get change log from git using `git log --pretty=format:"  - %cd - %cn : %s"`
@@ -48,25 +56,25 @@ This project is meant to quickly generate a random c2 profile. It is basically a
 
 This has been designed and tested with python3
 
-### Method 1: Quick and easy
+### Method 1: Keep your pythons separate and use pipenv (my prefered) - https://pipenv-fork.readthedocs.io/en/latest/basics.html
+
+- 1st, Install pipenv for your environment
+- 2nd, setup pipenv environment
+
+```
+pipenv --python 3.10
+pipenv install
+pipenv shell
+python random_c2profile.py
+```
+
+### Method 2: Via pip3 and the Pipfile
 
 ```
 git clone https://github.com/threatexpress/random_c2_profile
 cd random_c2_profile
-pip3 install -r requirements.txt
+pip3 install -p Pipfile
 python3 random_c2profile.py
-```
-
-### Method 2: Keep your pythons separate and use pipenv
-
-- 1st, Install pipenv for your environment
-- 2nd, setup pipevn environment
-
-```
-pipenv -python 3.8
-pipenv install
-pipenv shell
-python random_c2profile.py
 ```
 
 ## Generate some profiles
@@ -90,11 +98,12 @@ Joe Vest (@joevest) - 2021
 
 ## Modify this project
 
-File | Description
------|------------
+File                     | Description
+-------------------------|------------
 c2profile_template.jinja | Base template for a c2 profile
-variable.py | contains the default values or calls function set a specific profile setting
-functions.py | contains logic for generating various profile settings
+variable.py              | contains the default values or calls function set a specific profile setting
+functions.py             | contains logic for generating various profile settings
+html_contents.py         | contains a set of html code used to inject 'random' data into a profile
 
 ## References
 
@@ -103,10 +112,11 @@ functions.py | contains logic for generating various profile settings
 - https://github.com/threatexpress/malleable-c2/
 - https://github.com/FortyNorthSecurity/C2concealer/
 
-Magic MZ
+### Magic MZ
 
 - https://www.redteam.cafe/red-team/shellcode-injection/magic_mz_x86-and-magic_mz_x64
 
-# Word list source
+### Word list source
+
 - https://raw.githubusercontent.com/chrislockard/api_wordlist/master/objects.txt
 - https://raw.githubusercontent.com/chrislockard/api_wordlist/master/actions.txt

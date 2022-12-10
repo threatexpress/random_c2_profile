@@ -101,7 +101,7 @@ def get_http_content():
 
 def get_nops():
     # Return random bytearry of NOP equvilants as \x formatted string
-    # short list of nop equivilants
+    # short list of nop equivalents
 
     # | LENGTH  |           ASSEMBLY                       |         BYTE SEQUENCE        |
     # |---------|------------------------------------------|------------------------------|
@@ -341,7 +341,7 @@ def get_stage_magic_mz_64():
 def get_stage_compile_time():
     month  = random.choice(['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'])
     day    = str(random.randint(1,30)).zfill(2)
-    year   = str(random.choice(range(2005,2020)))
+    year   = str(random.choice(range(2005,2022)))
     hour   = str(random.randint(1,23)).zfill(2)
     minute = str(random.randint(1,59)).zfill(2) 
     second = str(random.randint(1,50)).zfill(2) 

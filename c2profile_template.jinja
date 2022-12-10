@@ -240,7 +240,7 @@ http-config { # The http-config block has influence over all HTTP responses serv
 ################################################
 ## HTTP GET
 ################################################
-http-get { # Don't think of this in terms of HTTP POST, as a beacon transaction of pushing data to the server
+http-get { # Don't think of this in terms of HTTP POST, but as a beacon transaction of pushing data to the server
 
     set uri "{{ http_get_uri }}"; # URI used for GET requests
     set verb "{{ http_get_verb }}"; 
@@ -280,7 +280,7 @@ http-get { # Don't think of this in terms of HTTP POST, as a beacon transaction 
 ################################################
 ## HTTP POST
 ################################################
-http-post { # Don't think of this in terms of HTTP POST, as a beacon transaction of pushing data to the server
+http-post { # Don't think of this in terms of HTTP POST, but as a beacon transaction of pushing data to the server
 
     set uri "{{ http_post_uri }}"; # URI used for POST block. 
     set verb "{{ http_post_verb }}"; # HTTP verb used in POST block. Can be GET or POST
