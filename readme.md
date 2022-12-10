@@ -118,7 +118,10 @@ html_contents.py         | contains a set of html code used to inject 'random' d
 ## Change Log
 
 Note: Get change log from git using `git log --pretty=format:"  - %cd - %cn : %s"`
-
+- Sat Dec 10 16:54:22 2022 -0600 - vestjoe : add ability to load custom profile template
+- Sat Dec 10 15:43:19 2022 -0600 - vestjoe : updated readme about OPSEC, fixed dependency versions, updated pipenv 
+usage instructions
+- Tue Dec 6 13:24:00 2022 -0600 - vestjoe : update readme
 - Tue Dec 6 13:20:54 2022 -0600 - GitHub : Merge pull request #10 from threatexpress/4.7
 - Tue Dec 6 13:17:17 2022 -0600 - vestjoe : Added 4.7 profile settings, Removed old HTML content template, Added new HTML content template to html_content.py
 - Wed Jun 22 11:58:22 2022 -0500 - GitHub : Merge pull request #6 from Maleick/main
