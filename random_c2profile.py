@@ -9,17 +9,40 @@ Joe Vest (@joevest) - 2021
 ===================================================================
 '''
 
+import argparse
+import os.path
+from re import template
 from jinja2 import Template
 from core.variables import *
- 
+
+# Default template path
+default_template = "templates/default_c2profile_template.jinja"
+
+# Description
+description = 'This project is designed to generate malleable c2 profiles for Cobalt Strike. See readme for detailed help.'
+
+# Arguments
+parser = argparse.ArgumentParser(description=description)
+parser.add_argument('-t', '--template', help="Path to the profile template", nargs='?', default=default_template)
+
+args = parser.parse_args()
+
+# Does profile exist?
+if not (os.path.isfile(args.template)):
+    print(f"[!] Template file not found. Check path ({args.template})")
+    exit()
+
+
 # Get Cobalt Strike version from variables.py
 version = variables['version']
 
 print(banner)
-print("[*] Generating Cobalt Strike " + version + " c2 profile...")
+print(f"[*] Generating Cobalt Strike Malleable C2 Profile")
+print(f"    Version : {version}")
+print(f"    template: {args.template}")
 
 sample_name = get_random_string(8)
-c2profile_template_file_contents = open("c2profile_template.jinja",'r').read()
+c2profile_template_file_contents = open(args.template,'r').read()
 c2profile_template = Template(c2profile_template_file_contents)
 
 jinja2_variables = variables
