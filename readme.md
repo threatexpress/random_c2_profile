@@ -118,6 +118,8 @@ html_contents.py         | contains a set of html code used to inject 'random' d
 ## Change Log
 
 Note: Get change log from git using `git log --pretty=format:"  - %cd - %cn : %s"`
+- Sat Dec 10 17:01:14 2022 -0600 - GitHub : Merge pull request #11 from threatexpress/custom_profile
+- Sat Dec 10 16:57:34 2022 -0600 - vestjoe : update readme
 - Sat Dec 10 16:54:22 2022 -0600 - vestjoe : add ability to load custom profile template
 - Sat Dec 10 15:43:19 2022 -0600 - vestjoe : updated readme about OPSEC, fixed dependency versions, updated pipenv 
 usage instructions
