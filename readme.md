@@ -118,6 +118,10 @@ html_contents.py         | contains a set of html code used to inject 'random' d
 ## Change Log
 
 Note: Get change log from git using `git log --pretty=format:"  - %cd - %cn : %s"`
+
+- Thu Jan 5 15:14:34 2023 -0600 - vestjoe : Update readme
+- Thu Jan 5 15:11:23 2023 -0600 - vestjoe : fix for issue https://github.com/threatexpress/random_c2_profile/issu
+es/12
 - Sat Dec 10 17:01:14 2022 -0600 - GitHub : Merge pull request #11 from threatexpress/custom_profile
 - Sat Dec 10 16:57:34 2022 -0600 - vestjoe : update readme
 - Sat Dec 10 16:54:22 2022 -0600 - vestjoe : add ability to load custom profile template
